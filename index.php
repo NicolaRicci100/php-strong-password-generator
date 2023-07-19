@@ -16,7 +16,10 @@ function getRandomPassword($length)
   //restituisco la password completa
   return $randomString;
 }
-var_dump(getRandomPassword($length = 15))
+
+$length = $GET_['length'] ?? '';
+
+var_dump(getRandomPassword($length));
 ?>
 
 
@@ -37,12 +40,15 @@ var_dump(getRandomPassword($length = 15))
     <h1>Random Password Generator</h1>
   </header>
   <main class="container">
-    <form class="mx-5">
+    <form class="mx-5" method="GET" action="" novalidate>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Numero Caratteri</label>
-        <input type="number" class="form-control" id="exampleInputPassword1">
+        <label class="form-label">Numero Caratteri</label>
+        <input type="number" name="lenght" class="form-control">
       </div>
       <button type="submit" class="btn btn-light text-secondary">Conferma</button>
+      <div class="mt-3">
+        <strong>La tua Password è</strong>
+      </div>
     </form>
   </main>
 </body>
