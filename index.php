@@ -1,25 +1,10 @@
 <?php
-//funzione per generare una password con caratteri casuali presi da una stringa
-function getRandomPassword($length)
-{
-  //stringa con numeri da 0 a 9, lettere minuscole, lettere maiuscole e simboli
-  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?&%*+:@-_|<>';
-  //prendo la lunghezza della stringa
-  $charactersLength = strlen($characters);
-  //sctringa password vuota
-  $randomString = '';
-  /* basanadomi sul numero scelto dall'utente giro nella stringa dei caratteri 
-  e, prendendoli casulamente, li inserisco nella password che volgio generare */
-  for ($i = 0; $i < $length; $i++) {
-    $randomString .= $characters[rand(0, $charactersLength - 1)];
-  }
-  //restituisco la password completa
-  return $randomString;
-}
-
 $length = $_GET['length'] ?? '';
-
-var_dump(getRandomPassword($length));
+if ($length !== '') {
+  session_start();
+  $_SESSION['length'] = $length;
+  header('Location: password.php');
+}
 ?>
 
 
@@ -43,12 +28,9 @@ var_dump(getRandomPassword($length));
     <form class="mx-5" method="GET" action="" novalidate>
       <div class="mb-3">
         <label class="form-label">Numero Caratteri</label>
-        <input type="number" name="lenght" class="form-control">
+        <input type="number" name="length" class="form-control" value="<?= $length ?>">
       </div>
       <button type="submit" class="btn btn-light text-secondary">Conferma</button>
-      <div class="mt-3">
-        <strong>La tua Password è <?= getRandomPassword($length) ?></strong>
-      </div>
     </form>
   </main>
 </body>
