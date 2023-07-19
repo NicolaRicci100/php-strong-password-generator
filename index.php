@@ -1,7 +1,22 @@
 <?php
-
-
-
+//funzione per generare una password con caratteri casuali presi da una stringa
+function getRandomPassword($length)
+{
+  //stringa con numeri da 0 a 9, lettere minuscole, lettere maiuscole e simboli
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!?&%*+:@-_|<>';
+  //prendo la lunghezza della stringa
+  $charactersLength = strlen($characters);
+  //sctringa password vuota
+  $randomString = '';
+  /* basanadomi sul numero scelto dall'utente giro nella stringa dei caratteri 
+  e, prendendoli casulamente, li inserisco nella password che volgio generare */
+  for ($i = 0; $i < $length; $i++) {
+    $randomString .= $characters[rand(0, $charactersLength - 1)];
+  }
+  //restituisco la password completa
+  return $randomString;
+}
+var_dump(getRandomPassword($length = 15))
 ?>
 
 
@@ -17,7 +32,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
-<body class="bg-dark text-light">
+<body class="bg-secondary text-light">
   <header class="text-center mt-5">
     <h1>Random Password Generator</h1>
   </header>
@@ -27,7 +42,7 @@
         <label for="exampleInputPassword1" class="form-label">Numero Caratteri</label>
         <input type="number" class="form-control" id="exampleInputPassword1">
       </div>
-      <button type="submit" class="btn btn-light">Conferma</button>
+      <button type="submit" class="btn btn-light text-secondary">Conferma</button>
     </form>
   </main>
 </body>
