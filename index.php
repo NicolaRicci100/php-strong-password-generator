@@ -17,7 +17,7 @@ function getRandomPassword($length)
   return $randomString;
 }
 
-$length = $GET_['length'] ?? '';
+$length = $_GET['length'] ?? '';
 
 var_dump(getRandomPassword($length));
 ?>
@@ -47,7 +47,7 @@ var_dump(getRandomPassword($length));
       </div>
       <button type="submit" class="btn btn-light text-secondary">Conferma</button>
       <div class="mt-3">
-        <strong>La tua Password è</strong>
+        <strong>La tua Password è <?= getRandomPassword($length) ?></strong>
       </div>
     </form>
   </main>
